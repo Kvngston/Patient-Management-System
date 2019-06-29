@@ -1,0 +1,6 @@
+#navbar{
+    background: blue;
+}
+.active:hover{
+    background: darkblue;
+}
