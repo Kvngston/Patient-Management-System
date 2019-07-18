@@ -1,52 +1,42 @@
 package com.project.patientmanagementsystem.Domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-public class PatientRecord {
+public class PatientRecord extends AuditModel {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String complaintList;
-
-    private String records;
+    private String treatments;
 
     @OneToOne
     private Patient patient;
 
-
     public PatientRecord() {
     }
 
-    public PatientRecord(String complaintList, String records, Patient patient) {
-        this.complaintList = complaintList;
-        this.records = records;
+    public PatientRecord(String treatments, Patient patient) {
+        this.treatments = treatments;
         this.patient = patient;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getComplaintList() {
-        return complaintList;
+    public String getTreatments() {
+        return treatments;
     }
 
-    public void setComplaintList(String complaintList) {
-        this.complaintList = complaintList;
-    }
-
-    public String getRecords() {
-        return records;
-    }
-
-    public void setRecords(String records) {
-        this.records = records;
+    public void setTreatments(String treatments) {
+        this.treatments = treatments;
     }
 
     public Patient getPatient() {
@@ -59,10 +49,10 @@ public class PatientRecord {
 
     @Override
     public String toString() {
-        return "PatientRecord{" +
+        return "Record{" +
                 "id=" + id +
-                ", complaintList=" + complaintList +
-                ", records=" + records +
+                ", treatments=" + treatments +
+                ", patient=" + patient +
                 '}';
     }
 }

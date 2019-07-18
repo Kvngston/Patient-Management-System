@@ -1,13 +1,13 @@
 package com.project.patientmanagementsystem.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Staff implements Serializable {
+public class Staff extends AuditModel implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
@@ -20,28 +20,33 @@ public class Staff implements Serializable {
 
     private Sex sex;
 
-    private final String Role = "Staff";
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "staff_role",
+            joinColumns = @JoinColumn(name = "staff_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Role role;
 
     private String companyID;
+
+    private String password;
 
     public Staff() {
     }
 
-    public Staff(String firstName, String lastName, String middleName, String department, Sex sex, String companyID) {
+    public Staff(String firstName, String lastName, String middleName, String department, Sex sex, Role role, String companyID, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.department = department;
         this.sex = sex;
+        this.role = role;
         this.companyID = companyID;
+        this.password = password;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getRole() {
-        return Role;
     }
 
     public void setId(Long id) {
@@ -88,12 +93,28 @@ public class Staff implements Serializable {
         this.sex = sex;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public String getCompanyID() {
         return companyID;
     }
 
     public void setCompanyID(String companyID) {
         this.companyID = companyID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -105,6 +126,7 @@ public class Staff implements Serializable {
                 ", middleName='" + middleName + '\'' +
                 ", department='" + department + '\'' +
                 ", sex=" + sex +
+                ", role=" + role +
                 ", companyID='" + companyID + '\'' +
                 '}';
     }

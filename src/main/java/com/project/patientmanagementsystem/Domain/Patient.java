@@ -1,12 +1,14 @@
 package com.project.patientmanagementsystem.Domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Patient {
+public class Patient extends AuditModel implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     private String firstName;
@@ -29,7 +31,12 @@ public class Patient {
 
     private String genotype;
 
-    private final String Role = "Patient";
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "patient_role",
+            joinColumns = @JoinColumn(name = "patient_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Role role;
 
     @OneToOne
     private PatientRecord patientRecord;
@@ -40,7 +47,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String firstName, String middleName, String lastName, int age, Sex sex, String cardNumber, String height, String weight, String bloodGroup, String genotype, PatientRecord patientRecord) {
+    public Patient(String firstName, String middleName, String lastName, int age, Sex sex, String cardNumber, String height, String weight, String bloodGroup, String genotype, Role role, PatientRecord patientRecord, Set<Appointment> appointment) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -51,7 +58,9 @@ public class Patient {
         this.weight = weight;
         this.bloodGroup = bloodGroup;
         this.genotype = genotype;
+        this.role = role;
         this.patientRecord = patientRecord;
+        this.appointment = appointment;
     }
 
     public Long getId() {
@@ -64,10 +73,6 @@ public class Patient {
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public String getRole() {
-        return Role;
     }
 
     public void setFirstName(String firstName) {
@@ -146,12 +151,12 @@ public class Patient {
         this.genotype = genotype;
     }
 
-    public Set<Appointment> getAppointment() {
-        return appointment;
+    public Role getRole() {
+        return role;
     }
 
-    public void setAppointment(Set<Appointment> appointment) {
-        this.appointment = appointment;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public PatientRecord getPatientRecord() {
@@ -160,6 +165,14 @@ public class Patient {
 
     public void setPatientRecord(PatientRecord patientRecord) {
         this.patientRecord = patientRecord;
+    }
+
+    public Set<Appointment> getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Set<Appointment> appointment) {
+        this.appointment = appointment;
     }
 
     @Override
@@ -176,7 +189,9 @@ public class Patient {
                 ", weight='" + weight + '\'' +
                 ", bloodGroup='" + bloodGroup + '\'' +
                 ", genotype='" + genotype + '\'' +
+                ", role=" + role +
                 ", patientRecord=" + patientRecord +
+                ", appointment=" + appointment +
                 '}';
     }
 }
