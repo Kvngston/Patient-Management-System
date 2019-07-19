@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class AppointmentService {
@@ -15,12 +17,12 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
 
     //find all appointments
-    public Iterable<Appointment> lookUpAppointments(){
+    public List<Appointment> lookUpAppointments(){
 
         return appointmentRepository.findAll();
     }
 
-    public Iterable<Appointment> appointmentsAtaSpecifiedTime(){
+    public List<Appointment> appointmentsAtaSpecifiedTime(){
 
         return appointmentRepository.findAll();
     }
