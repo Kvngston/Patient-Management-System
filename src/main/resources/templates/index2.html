@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required Meta Tags -->
     <meta charset="UTF-8">
@@ -7,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Page Title -->
-    <title>Medino</title>
+    <title>Paul's University Clinic</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
@@ -32,18 +33,19 @@
     <header class="header-area">
         <div id="header">
             <div class="container">
-                <div class="row align-items-center justify-content-between d-flex">
-                <div id="logo">
-                    <a href="index.html"><img src="assets/images/logo/logo.png" alt="" title=""/></a>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-active"><a href="index.html">Home</a></li>
-                        <li><a href="departments.html">Departments</a></li>
-                        <li><a href="doctors.html">Staffs</a></li>
-                        <li><a href="contact.html">Contact</a></li>			          				          
-                    </ul>
-                </nav><!-- #nav-menu-container -->		    		
+                <div class="row align-items-center justify-content-between d-flex pull-right">
+                    <!--<div id="logo">-->
+                        <!--<a href="index.html"><img src="assets/images/logo/logo.png" alt="" title=""/></a>-->
+                    <!--</div>-->
+                    <nav id="nav-menu-container" class="pull-right">
+                        <ul class="nav-menu">
+                            <li class="menu-active"><a href="index.html">Home</a></li>
+                            <li><a href="departments.html">Departments</a></li>
+                            <li><a href="doctors.html">Staffs</a></li>
+                            <li><a href="login.html" th:href="@{/login}">Login</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav><!-- #nav-menu-container -->
                 </div>
             </div>
         </div>

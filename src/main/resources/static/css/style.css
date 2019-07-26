@@ -1,6 +1,4 @@
-#navbar{
-    background: blue;
-}
-.active:hover{
-    background: darkblue;
+body{
+    background-image: url("../assets/images/welcome.png");
+    background-repeat: no-repeat;
 }

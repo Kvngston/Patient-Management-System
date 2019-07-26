@@ -3,6 +3,7 @@ package com.project.patientmanagementsystem.Domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import com.project.patientmanagementsystem.Domain.PatientRecord;
 
 @Entity
 public class Patient extends AuditModel implements Serializable {

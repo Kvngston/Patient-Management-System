@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @Controller
 public class StaffIndexController {
@@ -54,7 +55,7 @@ public class StaffIndexController {
     @RequestMapping(value = "/showPatientRecord", method = RequestMethod.GET)
     public String showPatientRecords(@RequestParam String cardNumber, Model model){
 
-        PatientRecord patientRecord = patientRecordRepository.findByPatient(patientRepository.findByCardNumber(cardNumber));
+        Set<PatientRecord> patientRecord = patientRecordRepository.findByPatient(patientRepository.findByCardNumber(cardNumber));
         if(patientRecord == null)
             model.addAttribute("notFound", false);
         model.addAttribute("patientRecord",patientRecord);

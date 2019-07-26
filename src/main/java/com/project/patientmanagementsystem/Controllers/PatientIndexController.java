@@ -27,11 +27,11 @@ public class PatientIndexController {
     private AppointmentService appointmentService;
 
 
-    @RequestMapping(value = "/patientIndexPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/index2", method = RequestMethod.GET)
     public String getPatientIndexPage(Model model){
 
 
-        return "patientIndex";
+        return "index2";
     }
 
 
@@ -70,5 +70,11 @@ public class PatientIndexController {
         model.addAttribute("patient", patient);
 
         return "AppointmentPage";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage(){
+
+        return "login";
     }
 }

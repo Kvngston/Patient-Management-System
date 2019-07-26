@@ -27,7 +27,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http
                 .authorizeRequests()
-                .antMatchers()
+                .antMatchers("/addPatient","/addPatientRecord", "/index2")
                 .authenticated()
                 .anyRequest()
                 .permitAll()
@@ -35,7 +35,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("", true)
+                .defaultSuccessUrl("/index2", true)
                 .and()
                 .logout()
                 .permitAll();
