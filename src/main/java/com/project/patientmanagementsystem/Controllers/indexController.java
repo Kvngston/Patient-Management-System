@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class indexController  {
 
     //to call the Main index page
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndexPage(){
 
         return "index2";

@@ -1,4 +1,4 @@
-body{
-    background-image: url("../assets/images/welcome.png");
+#loginBody{
+    background-image: url("../assets/images/banner-bg.jpg");
     background-repeat: no-repeat;
 }

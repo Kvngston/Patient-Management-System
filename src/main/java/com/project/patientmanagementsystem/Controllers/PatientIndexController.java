@@ -27,12 +27,12 @@ public class PatientIndexController {
     private AppointmentService appointmentService;
 
 
-    @RequestMapping(value = "/index2", method = RequestMethod.GET)
-    public String getPatientIndexPage(Model model){
-
-
-        return "index2";
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String getPatientIndexPage(Model model){
+//
+//
+//        return "index2";
+//    }
 
 
     @RequestMapping(value = "/addPatient", method = RequestMethod.POST)

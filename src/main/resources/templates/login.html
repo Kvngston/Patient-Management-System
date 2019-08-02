@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="loginBody">
     <div class="container">
-        <div class="jumbotron offset-3 col-md-6">
-            <div class="col-md-12">
+        <div style="margin-top: 18%;" class="jumbotron offset-3 col-md-6">
+            <div class="col-md-12" style="font-size: 80px; text-align: center;">
                 Login
             </div>
             <form th:action="@{/login}" action="/login" method="post">
@@ -38,6 +38,6 @@
         </div>
     </div>
 
-
+<script src="js/jquery.js" type="text/javascript" rel="script"></script>
 </body>
 </html>
