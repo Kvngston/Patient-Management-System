@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Staff extends AuditModel implements Serializable {
+public class Staff implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
