@@ -126,7 +126,6 @@ public class Staff implements Serializable {
                 ", middleName='" + middleName + '\'' +
                 ", department='" + department + '\'' +
                 ", sex=" + sex +
-                ", role=" + role +
                 ", companyID='" + companyID + '\'' +
                 '}';
     }

@@ -15,7 +15,13 @@
 </head>
 <body id="loginBody">
     <div class="container">
-        <div style="margin-top: 18%;" class="jumbotron offset-3 col-md-6">
+        <div style="margin-top: 15%;" class="jumbotron offset-3 col-md-6">
+            <div class="button row col-md-5 offset-md-7">
+                <a th:href="@{/}" style="text-decoration: black;">
+                    <span class="fa fa-arrow-left"></span>
+                    Back to HomePage
+                </a>
+            </div>
             <div class="col-md-12" style="font-size: 80px; text-align: center;">
                 Login
             </div>
@@ -28,7 +34,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
                     </div>
                     <div class="text-center mx-auto row col-md-12 col-sm-12">
-                        <button class="btn btn-primary col-md-12" type="submit"><i class="fa fa-sign-in-alt"></i>Log In</button>
+                        <button class="btn btn-primary col-md-12" type="submit"><i class="fa fa-sign-in"></i> <span> </span>Log In</button>
                     </div>
                     <div class="text-center mx-auto col-md-12 col-sm-12" style="margin-top:10px;">
                         <a href="Register.html" th:href="@{/register}" class="btn btn-danger col-md-12"><i class="fa fa-user"></i> Sign up</a>

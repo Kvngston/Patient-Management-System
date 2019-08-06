@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class indexController  {
@@ -31,8 +32,15 @@ public class indexController  {
 
     //to call the Main index page
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getIndexPage(){
+    public String getIndexPage(Principal principal, Model model){
+        model.addAttribute("noUserYet", true);
+        return "index2";
+    }
 
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String getIndex(Principal principal, Model model){
+        Staff staff = staffRepository.findByCompanyID(principal.getName());
+        model.addAttribute("noUserYet", false);
         return "index2";
     }
 

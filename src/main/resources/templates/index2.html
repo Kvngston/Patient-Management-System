@@ -38,11 +38,12 @@
                         <!--<a href="StaffIndex.html"><img src="assets/images/logo/logo.png" alt="" title=""/></a>-->
                     <!--</div>-->
                     <nav id="nav-menu-container" class="pull-right">
-                        <ul class="nav-menu">
-                            <li class="menu-active"><a href="index2.html">Home</a></li>
-                            <li><a href="departments.html">Departments</a></li>
-                            <li><a href="doctors.html">My Profile</a></li>
-                            <li><a href="login.html" th:href="@{/login}">Login</a></li>
+                        <ul class="nav-menu" >
+                            <li class="menu-active"><a href="index2.html" th:href="@{/}">Home</a></li>
+                            <li><a href="departments.html" >Departments</a></li>
+                            <li><a href="doctors.html" th:href="@{/staffPage}">My Profile</a></li>
+                            <li><a href="login.html" th:href="@{/login}" th:if="${noUserYet} == true">Login</a></li>
+                            <li><a href="" th:href="@{/logout}" th:if="${noUserYet} == false">LogOut</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav><!-- #nav-menu-container -->

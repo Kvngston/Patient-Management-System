@@ -73,7 +73,7 @@ public class PatientIndexController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginPage(){
+    public String getLoginPage(Model model){
 
         return "login";
     }
