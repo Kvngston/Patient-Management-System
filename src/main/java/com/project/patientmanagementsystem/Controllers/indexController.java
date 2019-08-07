@@ -73,26 +73,55 @@ public class indexController  {
                            @RequestParam("Sex") String staffSex,
                            Model model){
 
-            System.out.println("I'm Here");
-            if(staffSex.toLowerCase().equals(Sex.MALE.toString().toLowerCase())){
-                staff.setSex(Sex.MALE);
-            }else if(staffSex.toLowerCase().equals(Sex.FEMALE.toString().toLowerCase())){
-                staff.setSex(Sex.FEMALE);
-            }else {
-                model.addAttribute("InvalidSex", true);
-                return "register";
-            }
-            if(staff.getPassword().equals(cpassword))
-                staff.setPassword(passwordEncoder.encode(staff.getPassword()));
-            else {
-                model.addAttribute("PasswordMisMatch", true);
-                return "register";
-            }
-            staff.setRole(roleRepository.getOne(1));
-            System.out.println(staff);
-            staffRepository.save(staff);
-
+                System.out.println(staffSex);
+                if (staffSex.toLowerCase().equals(Sex.MALE.toString().toLowerCase())) {
+                    staff.setSex(Sex.MALE);
+                } else if (staffSex.toLowerCase().equals(Sex.FEMALE.toString().toLowerCase())) {
+                    staff.setSex(Sex.FEMALE);
+                } else {
+                    model.addAttribute("InvalidSex", true);
+                    return "register";
+                }
+                if (staff.getPassword().equals(cpassword))
+                    staff.setPassword(passwordEncoder.encode(staff.getPassword()));
+                else {
+                    model.addAttribute("PasswordMisMatch", true);
+                    return "register";
+                }
+                staff.setRole(roleRepository.getOne(1));
+                System.out.println(staff);
+                if (staffRepository.findByCompanyID(staff.getCompanyID()) == null)
+                    staffRepository.save(staff);
+                else {
+                    model.addAttribute("userExists", true);
+                    return "register";
+                }
         return "redirect:/staffPage";
     }
 
+    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+    public String editStaffProfile(@ModelAttribute(value = "Staff") @Valid Staff staff,
+                                   BindingResult bindingResult,
+                                   Principal principal,
+//                                   @RequestParam("Sex") String staffSex,
+                                   @RequestParam("cpassword") String cpassword,
+                                   Model model){
+
+
+        Staff currentStaff = staffRepository.findByCompanyID(principal.getName());
+        staff.setId(currentStaff.getId());
+        staff.setSex(currentStaff.getSex());
+        if (staff.getPassword().equals(cpassword))
+            staff.setPassword(passwordEncoder.encode(staff.getPassword()));
+        else {
+            model.addAttribute("PasswordMisMatch", true);
+            return "register";
+        }
+
+        staff.setRole(roleRepository.getOne(1));
+        System.out.println(staff);
+        staffRepository.save(staff);
+
+        return "redirect:/index";
+    }
 }

@@ -1,41 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Online Patient Management System</title>
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top" id="navbar" role="navigation">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#" style="color: black;">PMS Paul's Uni</a>
-                </div>
+<header class="header-area">
+    <div id="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex pull-right">
+                <!--<div id="logo">-->
+                <!--<a href="StaffIndex.html"><img src="assets/images/logo/logo.png" alt="" title=""/></a>-->
+                <!--</div>-->
+                <nav id="nav-menu-container navbar" class="pull-right">
+                    <ul class="nav-menu" >
+                        <li class="menu-active"><a href="index2.html" th:href="@{/}">Home</a></li>
+                        <li><a href="departments.html" >Departments</a></li>
+                        <li><a href="doctors.html" th:href="@{/staffPage}">My Profile</a></li>
+                        <li><a href="login.html" th:href="@{/login}" th:if="${noUserYet} == true">Login</a></li>
+                        <li><a href="" th:href="@{/logout}" th:if="${noUserYet} == false">LogOut</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="container-fluid" style="margin-top: 50px;">
+        <aside class="container col-md-4">
+            <div class="" style=" margin-top: 100px; background-color: white;">
+                <h1 class="text-primary"> Edit Profile For Staff with ID:
+                    <h1 th:text="${staff.companyID}"></h1>
+                    <h1 class="text-primary">Name:
+                        <h1 th:text="${staffName}">
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" style="color:blue;"></span> Search</button>
-                    </form>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    </header>
-    <div class="container-fluid">
-        <div class="col-md-12 col-lg-12">
-            
+                        </h1>
+                    </h1>
+                </h1>
+            </div>
+
+        </aside>
+        <div class="col-md-8 col-lg-8" style="margin-top: 50px;">
+            <form class="jumbotron col-md-10" style="margin-top: 50px;" th:object="${staff}" th:action="@{/editProfile}" action="/editProfile" method="post">
+                <div class="col-md-4 pull-right">
+                    <a th:href="@{/}" style="">
+                        <span class="fa fa-arrow-left"></span>
+                        Back to HomePage
+                    </a>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="firstName">
+                        * FirstName
+                    </label>
+                    <input required="required" type="text" th:value="${firstName}" th:field="*{firstName}" class="form-control" id="firstName" placeholder="firstName" name="firstName"/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="lastName">
+                        * LastName
+                    </label>
+                    <input required="required" type="text" th:value="${lastName}" th:field="*{lastName}" class="form-control" id="lastName" placeholder="lastName" name="lastName"/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="middleName">
+                        * Middle Name
+                    </label>
+                    <input required="required" type="text" th:value="${middleName}" th:field="*{middleName}" class="form-control" id="middleName" placeholder="middleName" name="middleName"/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="department">
+                        * Department
+                    </label>
+                    <input required="required" type="text" th:value="${department}" th:field="*{department}" class="form-control" id="department" placeholder="Department" name="department"/>
+                </div>
+                <!--<div class="form-group col-md-12 col-sm-12">-->
+                    <!--<label for="Sex">-->
+                        <!--* Sex-->
+                    <!--</label>-->
+                    <!--<p class="text-danger" th:if="${InvalidSex}==true">Invalid Sex</p>-->
+                    <!--<input required="required" type="text" class="form-control" th:field="*{sex}" th:value="${staff.sex}" id="Sex" name="Sex" placeholder="Sex"/>-->
+                <!--</div>-->
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="CompanyId">
+                        * Comapny Id
+                    </label>
+                    <input required="required" type="text" th:value="${companyID}" th:field="*{companyID}" class="form-control" id="CompanyId" placeholder="CompanyId" name="CompanyId"/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="Password">
+                        * Password
+                    </label>
+                    <p class="text-danger" th:if="${PasswordMisMatch}== true"> Password don't Match</p>
+                    <input required="required" type="Password" th:value="${password}" class="form-control" id="password" placeholder="Password" name="password"/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="Confirm Password">
+                        * Confirm Password
+                    </label>
+                    <input required="required" type="Password" class="form-control" id="Confirm Password" placeholder="Confirm Password" name="cpassword"/>
+                </div>
+                <div class="text-center mx-auto col-md-12 col-sm-12" style="margin-top:10px;">
+                    <button style="color: white;" class="btn btn-danger col-md-12"><i class="fa fa-bolt"></i><span> </span> Edit Profile</button>
+                </div>
+            </form>
         </div>
     </div>
 

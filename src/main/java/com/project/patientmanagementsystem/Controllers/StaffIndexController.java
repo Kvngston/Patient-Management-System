@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Set;
 
 @Controller
@@ -35,19 +36,11 @@ public class StaffIndexController {
     private AppointmentService appointmentService;
 
     @RequestMapping(value = "/staffPage", method = RequestMethod.GET)
-    public String getStaffPage(Model model){
+    public String getStaffPage(Principal principal, Model model){
 
-        return "staffIndex";
-    }
-
-    @RequestMapping(value = "/addStaff", method = RequestMethod.POST)
-    public String addStaff(@ModelAttribute(value = "Staff") @Valid Staff staff, BindingResult bindingResult, Model model){
-
-        if(bindingResult.hasErrors())
-            return "staffRegister";
-
-        staffRepository.save(staff);
-
+        Staff staff = staffRepository.findByCompanyID(principal.getName());
+        model.addAttribute("staff", staff);
+        model.addAttribute("staffName", staff.getFirstName()+ " " +staff.getLastName()+" "+staff.getMiddleName());
         return "staffIndex";
     }
 
@@ -65,6 +58,7 @@ public class StaffIndexController {
 
         return "recordsPage";
     }
+
     @RequestMapping(value = "/createAppointment", method = RequestMethod.POST)
     public String createAppoint(@ModelAttribute("patient") Patient patient, Model model){
 
@@ -72,4 +66,6 @@ public class StaffIndexController {
 
         return "redirect:/patientIndexPage";
     }
+
+
 }

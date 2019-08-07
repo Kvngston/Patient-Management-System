@@ -19,8 +19,8 @@ public class PatientmanagementsystemApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Role role = new Role();
-        role.setRole("Staff");
-        roleRepository.save(role);
+//        Role role = new Role();
+//        role.setRole("Staff");
+//        roleRepository.save(role);
     }
 }
