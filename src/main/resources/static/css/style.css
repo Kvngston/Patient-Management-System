@@ -1,4 +1,13 @@
-#loginBody{
-    background-image: url("../assets/images/banner-bg.jpg");
-    background-repeat: no-repeat;
+.wrapper {
+  height: 70%;
+  /* box-shadow: 0 3px 5px 5px gray; */
+  box-shadow: 0 5px 5px 5px rgba(9, 9, 9, 0.23);
+}
+
+.text-danger {
+  color: #ab1212;
+}
+
+.form-wrapper {
+  /* border: 2px solid black; */
 }
