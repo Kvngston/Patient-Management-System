@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Patient Management System</title>
-    <link rel="stylesheet" href="../static/assets/css/animate-3.7.0.css">
-    <link rel="stylesheet" href="../static/assets/css/font-awesome-4.7.0.min.css">
-    <link rel="stylesheet" href="../static/assets/css/owl-carousel.min.css">
-    <link rel="stylesheet" href="../static/assets/css/jquery.datetimepicker.min.css">
-    <link rel="stylesheet" href="../static/assets/css/linearicons.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/chizzy.min.css">
-    <link rel="stylesheet" href="../static/css/flexboxgrid.min.css">
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chizzy.min.css">
+    <link rel="stylesheet" href="css/flexboxgrid.min.css">
 </head>
 <body>
   <nav class="navigation navigation-white navigation-fixed">
@@ -20,12 +20,12 @@
       <div class="line"></div>
     </button>
     <a href="#!" class="brand-name left">
-      <span>Hospital</span>
+      <span>PMS Paul's University</span>
     </a>
     <ul>
-      <li class="active nav-link"><a href="#!">Home</a></li>
-      <li class="nav-link"><a href="#!">About</a></li>
-      <li class="nav-link"><a href="#!">Services</a></li>
+      <li class="active nav-link"><a href="#!" th:href="@{/index}">Home</a></li>
+      <li class="nav-link"><a href="#!" th:href="@{/viewPatients}">View Patients</a></li>
+      <li class="nav-link"><a href="#!" th:href="@{/logout}">LogOut</a></li>
       <li class="nav-link"><a href="#!">Contact</a></li>
     </ul>
   </nav>
@@ -34,12 +34,12 @@
     <div class="row wrapper">
       <div class="col-md-4 black text-white">
         <div class="p-3">
-          <h1>Edit Profile for staff with ID:</h1>
-          <h3>Name:</h3>
+          <h1>Edit Profile for staff with ID:<p th:text="${staff.companyID}"></p></h1>
+          <h3>Name: <p th:text="${staffName}"></p></h3>
         </div>
       </div>
       <div class="col-md-8 p-4 form-wrapper">
-        <form action="#">
+        <form action="/editProfile" th:object="${staff}" th:action="@{/editProfile}" method="post">
           <div class="form-group">
               <label for="firstName">FirstName</label>
               <input required="required" type="text" th:value="${firstName}" th:field="*{firstName}" class="form-input" id="firstName" placeholder="firstName" name="firstName"/>

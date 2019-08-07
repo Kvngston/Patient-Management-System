@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>View  Patients</title>
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chizzy.min.css">
+    <link rel="stylesheet" href="css/flexboxgrid.min.css">
+</head>
+<body>
+<nav class="navigation navigation-white navigation-fixed">
+    <button class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </button>
+    <a href="#!" class="brand-name left">
+        <span>PMS Paul's University</span>
+    </a>
+    <ul>
+        <li class="active nav-link"><a href="#!" th:href="@{/index}">Home</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/viewPatients}">Add Patients</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/logout}">LogOut</a></li>
+        <li class="nav-link"><a href="#!">Contact</a></li>
+    </ul>
+</nav>
+<div class="container" style="margin-top: 100px;">
+
+    <table border="0" th:if="${listNotEmpty}==true" class="table table-hover" id="notestable">
+        <thead>
+        <tr >
+            <th class="col-md-1">No.</th>
+            <th class="col-md-7">Details</th>
+            <th class="col-md-4">Card Details</th>
+        </tr>
+        </thead>
+        <tbody id="body" style="background-color: whitesmoke; opacity: 0.9555">
+        <tr th:each = "patient, iterStat:${patients}">
+            <td  th:text="${iterStat.count}" style="opacity: 1"></td>
+            <td style="opacity: 1">
+                <div class="">
+                    <h4 th:text="${patient.firstName}"> </h4>
+                    <h4 th:text="${patient.lastName}"> </h4>
+                    <h4 th:text="${patient.middleName}"> </h4>
+                    <h4 th:text="${patient.age}"> </h4>
+                    <h4 th:text="${patient.sex}"> </h4>
+                </div>
+            </td>
+            <td style="opacity: 1">
+                <div class="">
+                    <h4 th:text="${patient.cardNumber}" > </h4>
+                    <h4 th:text="${patient.genotype}" > </h4>
+                    <h4 th:text="${patient.height}" > </h4>
+                    <h4 th:text="${patient.weight}" > </h4>
+                    <h4 th:text="${patient.bloodGroup}" > </h4>
+                </div>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

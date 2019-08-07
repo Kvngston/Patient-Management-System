@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Patient Management System</title>
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chizzy.min.css">
+    <link rel="stylesheet" href="css/flexboxgrid.min.css">
+</head>
+<body>
+<nav class="navigation navigation-white navigation-fixed">
+    <button class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </button>
+    <a href="#!" class="brand-name left">
+        <span>PMS Paul's University</span>
+    </a>
+    <ul>
+        <li class="active nav-link"><a href="#!" th:href="@{/index}">Home</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/viewPatients}">View Patients</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/logout}">LogOut</a></li>
+        <li class="nav-link"><a href="#!">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container mt-max">
+    <div class="row wrapper">
+        <div class="col-md-4 black text-white">
+            <div class="p-3">
+                <h1>Edit Profile for staff with ID:<p th:text="${staff.companyID}"></p></h1>
+                <h3>Name: <p th:text="${staffName}"></p></h3>
+            </div>
+        </div>
+        <div class="col-md-8 p-4 form-wrapper">
+            <form action="/editProfile" th:object="${staff}" th:action="@{/editProfile}" method="post">
+                <div class="form-group">
+                    <label for="firstName">FirstName</label>
+                    <input required="required" type="text" th:value="${firstName}" th:field="*{firstName}" class="form-input" id="firstName" placeholder="firstName" name="firstName"/>
+
+                    <label for="lastName">LastName</label>
+                    <input required="required" type="text" th:value="${lastName}" th:field="*{lastName}" class="form-input" id="lastName" placeholder="lastName" name="lastName"/>
+
+                    <label for="middleName">Middle Name</label>
+                    <input required="required" type="text" th:value="${middleName}" th:field="*{middleName}" class="form-input" id="middleName" placeholder="middleName" name="middleName"/>
+
+
+                    <label for="department">Department</label>
+                    <input required="required" type="text" th:value="${department}" th:field="*{department}" class="form-input" id="department" placeholder="Department" name="department"/>
+
+
+                    <label for="CompanyId">Comapny Id</label>
+                    <input required="required" type="text" th:value="${companyID}" th:field="*{companyID}" class="form-input" id="CompanyId" placeholder="CompanyId" name="CompanyId"/>
+
+
+                    <label for="Password">Password</label>
+                    <input required="required" type="Password" th:value="${password}" class="form-input" id="password" placeholder="Password" name="password"/>
+
+
+                    <label for="Confirm Password">Confirm Password</label>
+                    <input required="required" type="Password" class="form-input" id="Confirm Password" placeholder="Confirm Password" name="cpassword"/>
+
+                    <h3 class="text-danger" th:if="${PasswordMisMatch}== true"> Password don't Match</h3>
+
+                    <input type="submit" value="Edit Profile" class="btn btn-green btn-block">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../static/js/jquery.js" type="text/javascript" rel="script"></script>
+</body>
+</html>

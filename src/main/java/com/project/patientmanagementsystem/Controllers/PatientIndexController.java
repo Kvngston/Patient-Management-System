@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class PatientIndexController {
@@ -26,20 +27,25 @@ public class PatientIndexController {
     @Autowired
     private AppointmentService appointmentService;
 
+    @RequestMapping(value = "/viewPatients", method = RequestMethod.GET)
+    public String getPatientsPage(Model model){
 
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String getPatientIndexPage(Model model){
-//
-//
-//        return "index2";
-//    }
-
+        List<Patient> patients = patientRepository.findAll();
+        if(patients != null) {
+            model.addAttribute("listNotEmpty", true);
+            model.addAttribute("patient", patients);
+        }else
+            model.addAttribute("listNotEmpty", false);
+        return "viewPatients";
+    }
 
     @RequestMapping(value = "/addPatient", method = RequestMethod.POST)
-    public String addPatient(@ModelAttribute(name = "patient") @Valid Patient patient, BindingResult bindingResult, Model model){
+    public String addPatient(@ModelAttribute(name = "patient") @Valid Patient patient,
+                             BindingResult bindingResult,
+                             Model model){
 
         if(bindingResult.hasErrors())
-            return "PatientRegister";
+            return "viewPatients";
 
         patient.setPatientRecord(new PatientRecord());
 
@@ -47,7 +53,7 @@ public class PatientIndexController {
         model.addAttribute("PatientCreated", true);
 
 
-        return "PatientIndex";
+        return "ViewPatients";
     }
 
     @RequestMapping(value = "/myRecord", method = RequestMethod.GET)
