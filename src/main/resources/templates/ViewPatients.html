@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="assets/css/linearicons.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/chizzy.min.css">
-    <link rel="stylesheet" href="css/flexboxgrid.min.css">
+    <!--<link rel="stylesheet" href="css/chizzy.min.css">-->
+    <!--<link rel="stylesheet" href="css/flexboxgrid.min.css">-->
+    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css">
 </head>
 <body>
 <nav class="navigation navigation-white navigation-fixed">
@@ -24,7 +25,7 @@
     </a>
     <ul>
         <li class="active nav-link"><a href="#!" th:href="@{/index}">Home</a></li>
-        <li class="nav-link"><a href="#!" th:href="@{/viewPatients}">Add Patients</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/addPatients}">Add Patients</a></li>
         <li class="nav-link"><a href="#!" th:href="@{/logout}">LogOut</a></li>
         <li class="nav-link"><a href="#!">Contact</a></li>
     </ul>
@@ -33,31 +34,31 @@
 
     <table border="0" th:if="${listNotEmpty}==true" class="table table-hover" id="notestable">
         <thead>
-        <tr >
-            <th class="col-md-1">No.</th>
-            <th class="col-md-7">Details</th>
-            <th class="col-md-4">Card Details</th>
+        <tr>
+            <th >No.</th>
+            <th >Details</th>
+            <th >Card Details</th>
         </tr>
         </thead>
         <tbody id="body" style="background-color: whitesmoke; opacity: 0.9555">
-        <tr th:each = "patient, iterStat:${patients}">
+        <tr th:each = "patient, iterStat:${patient}">
             <td  th:text="${iterStat.count}" style="opacity: 1"></td>
             <td style="opacity: 1">
                 <div class="">
-                    <h4 th:text="${patient.firstName}"> </h4>
-                    <h4 th:text="${patient.lastName}"> </h4>
-                    <h4 th:text="${patient.middleName}"> </h4>
-                    <h4 th:text="${patient.age}"> </h4>
-                    <h4 th:text="${patient.sex}"> </h4>
+                    <h4 th:text="'First Name: ' +' ' +${patient.firstName}"> </h4>
+                    <h4 th:text="'Last Name: ' +' ' +${patient.lastName}"> </h4>
+                    <h4 th:text="'Middle Name: ' +' ' +${patient.middleName}"> </h4>
+                    <h4 th:text="'Age: ' +' ' +${patient.age}"> </h4>
+
                 </div>
             </td>
             <td style="opacity: 1">
                 <div class="">
-                    <h4 th:text="${patient.cardNumber}" > </h4>
-                    <h4 th:text="${patient.genotype}" > </h4>
-                    <h4 th:text="${patient.height}" > </h4>
-                    <h4 th:text="${patient.weight}" > </h4>
-                    <h4 th:text="${patient.bloodGroup}" > </h4>
+                    <h4 th:text="'Card Number: ' +' ' +${patient.cardNumber}" > </h4>
+                    <h4 th:text="'Genotype: ' +' ' +${patient.genotype}" > </h4>
+                    <h4 th:text="'Height: ' +' ' +${patient.height}" > </h4>
+                    <h4 th:text="'Weight: ' +' ' +${patient.weight}" > </h4>
+                    <h4 th:text="'Blood Group: ' +' ' +${patient.bloodGroup}" > </h4>
                 </div>
             </td>
         </tr>

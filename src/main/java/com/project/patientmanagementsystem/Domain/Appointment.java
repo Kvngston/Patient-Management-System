@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Appointment extends AuditModel implements Serializable {
+public class Appointment implements Serializable {
 
     @Id
     private Long Id;

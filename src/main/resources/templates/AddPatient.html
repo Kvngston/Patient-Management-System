@@ -32,14 +32,14 @@
 
 <div class="container mt-max">
     <div class="row wrapper">
-        <div class="col-md-4 black text-white">
+        <div class="col-md-4 dark-blue text-white">
             <div class="p-3">
-                <h1>Edit Profile for staff with ID:<p th:text="${staff.companyID}"></p></h1>
-                <h3>Name: <p th:text="${staffName}"></p></h3>
+                <h1>Add Patient</h1>
+                <h3></h3>
             </div>
         </div>
         <div class="col-md-8 p-4 form-wrapper">
-            <form action="/editProfile" th:object="${staff}" th:action="@{/editProfile}" method="post">
+            <form action="/addPatient" th:object="${patient}" th:action="@{/createPatient}" method="post">
                 <div class="form-group">
                     <label for="firstName">FirstName</label>
                     <input required="required" type="text" th:value="${firstName}" th:field="*{firstName}" class="form-input" id="firstName" placeholder="firstName" name="firstName"/>
@@ -51,24 +51,31 @@
                     <input required="required" type="text" th:value="${middleName}" th:field="*{middleName}" class="form-input" id="middleName" placeholder="middleName" name="middleName"/>
 
 
-                    <label for="department">Department</label>
-                    <input required="required" type="text" th:value="${department}" th:field="*{department}" class="form-input" id="department" placeholder="Department" name="department"/>
+                    <label for="age">Age</label>
+                    <input required="required" type="text" th:value="${age}" th:field="*{age}" class="form-input" id="age" placeholder="Age" name="Age"/>
 
 
-                    <label for="CompanyId">Comapny Id</label>
-                    <input required="required" type="text" th:value="${companyID}" th:field="*{companyID}" class="form-input" id="CompanyId" placeholder="CompanyId" name="CompanyId"/>
+                    <label for="Sex">Sex</label>
+                    <input required="required" type="text" class="form-input" id="sex" placeholder="Sex" name="Sex"/>
 
 
-                    <label for="Password">Password</label>
-                    <input required="required" type="Password" th:value="${password}" class="form-input" id="password" placeholder="Password" name="password"/>
+                    <label for="CardNumber">Card Number</label>
+                    <input required="required" type="text" th:field="*{cardNumber}" class="form-input" id="CardNumber" placeholder="Card Number" name="Card Number"/>
 
 
-                    <label for="Confirm Password">Confirm Password</label>
-                    <input required="required" type="Password" class="form-input" id="Confirm Password" placeholder="Confirm Password" name="cpassword"/>
+                    <label for="Height">Height</label>
+                    <input required="required" type="text" class="form-input" th:field="*{height}" id="Height" placeholder="Enter Height" name="Height"/>
 
-                    <h3 class="text-danger" th:if="${PasswordMisMatch}== true"> Password don't Match</h3>
+                    <label for="Weight">Weight</label>
+                    <input required="required" type="text" th:field="*{weight}" class="form-input" id="weight" placeholder="Enter Weight" name="Weight"/>
 
-                    <input type="submit" value="Edit Profile" class="btn btn-green btn-block">
+                    <label for="BloodGroup">Blood Group</label>
+                    <input required="required" type="text" class="form-input" th:field="*{bloodGroup}" id="BloodGroup" placeholder="Enter Blood Group" name="BloodGroup"/>
+
+                    <label for="Genotype">Genotype</label>
+                    <input required="required" type="text" class="form-input" th:field="*{genotype}" id="Genotype" placeholder="Enter Genotype" name="Genotype"/>
+
+                    <input type="submit" value="Add Patient" class="btn btn-green btn-block">
                 </div>
             </form>
         </div>

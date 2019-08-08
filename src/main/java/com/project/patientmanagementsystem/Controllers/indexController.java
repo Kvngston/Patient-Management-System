@@ -88,7 +88,7 @@ public class indexController  {
                     model.addAttribute("PasswordMisMatch", true);
                     return "register";
                 }
-                staff.setRole(roleRepository.getOne(1));
+                staff.setRole(roleRepository.findByRole("Staff"));
                 System.out.println(staff);
                 if (staffRepository.findByCompanyID(staff.getCompanyID()) == null)
                     staffRepository.save(staff);
