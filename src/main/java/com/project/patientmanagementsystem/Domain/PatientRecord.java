@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class PatientRecord extends AuditModel {
+public class PatientRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String complaint;
 
     private String treatments;
 
@@ -18,7 +20,8 @@ public class PatientRecord extends AuditModel {
     public PatientRecord() {
     }
 
-    public PatientRecord(String treatments, Patient patient) {
+    public PatientRecord(String complaint, String treatments, Patient patient) {
+        this.complaint = complaint;
         this.treatments = treatments;
         this.patient = patient;
     }
@@ -29,6 +32,14 @@ public class PatientRecord extends AuditModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getComplaint() {
+        return complaint;
+    }
+
+    public void setComplaint(String complaint) {
+        this.complaint = complaint;
     }
 
     public String getTreatments() {
@@ -49,9 +60,10 @@ public class PatientRecord extends AuditModel {
 
     @Override
     public String toString() {
-        return "Record{" +
+        return "PatientRecord{" +
                 "id=" + id +
-                ", treatments=" + treatments +
+                ", complaint='" + complaint + '\'' +
+                ", treatments='" + treatments + '\'' +
                 ", patient=" + patient +
                 '}';
     }

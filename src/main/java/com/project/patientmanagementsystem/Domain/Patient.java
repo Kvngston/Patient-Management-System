@@ -2,11 +2,9 @@ package com.project.patientmanagementsystem.Domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
-import com.project.patientmanagementsystem.Domain.PatientRecord;
 
 @Entity
-public class Patient extends AuditModel implements Serializable {
+public class Patient implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +17,6 @@ public class Patient extends AuditModel implements Serializable {
     private String lastName;
     
     private int age;
-
-    private Sex sex;
 
     private String cardNumber;
 
@@ -42,18 +38,17 @@ public class Patient extends AuditModel implements Serializable {
     @OneToOne
     private PatientRecord patientRecord;
 
-    @OneToMany
-    private Set<Appointment> appointment;
+//    @OneToMany
+//    private Set<Appointment> appointment;
 
     public Patient() {
     }
 
-    public Patient(String firstName, String middleName, String lastName, int age, Sex sex, String cardNumber, String height, String weight, String bloodGroup, String genotype, Role role, PatientRecord patientRecord, Set<Appointment> appointment) {
+    public Patient(String firstName, String middleName, String lastName, int age,String cardNumber, String height, String weight, String bloodGroup, String genotype, Role role, PatientRecord patientRecord) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.age = age;
-        this.sex = sex;
         this.cardNumber = cardNumber;
         this.height = height;
         this.weight = weight;
@@ -61,7 +56,6 @@ public class Patient extends AuditModel implements Serializable {
         this.genotype = genotype;
         this.role = role;
         this.patientRecord = patientRecord;
-        this.appointment = appointment;
     }
 
     public Long getId() {
@@ -104,13 +98,6 @@ public class Patient extends AuditModel implements Serializable {
         this.age = age;
     }
 
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
 
     public String getCardNumber() {
         return cardNumber;
@@ -168,14 +155,6 @@ public class Patient extends AuditModel implements Serializable {
         this.patientRecord = patientRecord;
     }
 
-    public Set<Appointment> getAppointment() {
-        return appointment;
-    }
-
-    public void setAppointment(Set<Appointment> appointment) {
-        this.appointment = appointment;
-    }
-
     @Override
     public String toString() {
         return "Patient{" +
@@ -184,15 +163,11 @@ public class Patient extends AuditModel implements Serializable {
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", sex=" + sex +
                 ", cardNumber='" + cardNumber + '\'' +
                 ", height='" + height + '\'' +
                 ", weight='" + weight + '\'' +
                 ", bloodGroup='" + bloodGroup + '\'' +
                 ", genotype='" + genotype + '\'' +
-                ", role=" + role +
-                ", patientRecord=" + patientRecord +
-                ", appointment=" + appointment +
                 '}';
     }
 }

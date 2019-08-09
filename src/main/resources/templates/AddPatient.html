@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Patient Management System</title>
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chizzy.min.css">
+    <link rel="stylesheet" href="css/flexboxgrid.min.css">
+</head>
+<body>
+<nav class="navigation navigation-white navigation-fixed">
+    <button class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </button>
+    <a href="#!" class="brand-name left">
+        <span>PMS Paul's University</span>
+    </a>
+    <ul>
+        <li class="active nav-link"><a href="#!" th:href="@{/index}">Home</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/viewPatients}">View Patients</a></li>
+        <li class="nav-link"><a href="#!" th:href="@{/logout}">LogOut</a></li>
+        <li class="nav-link"><a href="#!">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container mt-max">
+    <div class="row wrapper">
+        <div class="col-md-4 dark-blue text-white">
+            <div class="p-3">
+                <h1>Add Patient</h1>
+                <h3></h3>
+            </div>
+        </div>
+        <div class="col-md-8 p-4 form-wrapper">
+            <form action="/addPatient" th:object="${patient}" th:action="@{/createPatient}" method="post">
+                <div class="form-group">
+                    <label for="firstName">FirstName</label>
+                    <input required="required" type="text" th:value="${firstName}" th:field="*{firstName}" class="form-input" id="firstName" placeholder="firstName" name="firstName"/>
+
+                    <label for="lastName">LastName</label>
+                    <input required="required" type="text" th:value="${lastName}" th:field="*{lastName}" class="form-input" id="lastName" placeholder="lastName" name="lastName"/>
+
+                    <label for="middleName">Middle Name</label>
+                    <input required="required" type="text" th:value="${middleName}" th:field="*{middleName}" class="form-input" id="middleName" placeholder="middleName" name="middleName"/>
+
+
+                    <label for="age">Age</label>
+                    <input required="required" type="text" th:value="${age}" th:field="*{age}" class="form-input" id="age" placeholder="Age" name="Age"/>
+
+
+                    <label for="Sex">Sex</label>
+                    <input required="required" type="text" class="form-input" id="sex" placeholder="Sex" name="Sex"/>
+
+
+                    <label for="CardNumber">Card Number</label>
+                    <input required="required" type="text" th:field="*{cardNumber}" class="form-input" id="CardNumber" placeholder="Card Number" name="Card Number"/>
+
+
+                    <label for="Height">Height</label>
+                    <input required="required" type="text" class="form-input" th:field="*{height}" id="Height" placeholder="Enter Height" name="Height"/>
+
+                    <label for="Weight">Weight</label>
+                    <input required="required" type="text" th:field="*{weight}" class="form-input" id="weight" placeholder="Enter Weight" name="Weight"/>
+
+                    <label for="BloodGroup">Blood Group</label>
+                    <input required="required" type="text" class="form-input" th:field="*{bloodGroup}" id="BloodGroup" placeholder="Enter Blood Group" name="BloodGroup"/>
+
+                    <label for="Genotype">Genotype</label>
+                    <input required="required" type="text" class="form-input" th:field="*{genotype}" id="Genotype" placeholder="Enter Genotype" name="Genotype"/>
+
+                    <input type="submit" value="Add Patient" class="btn btn-green btn-block">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../static/js/jquery.js" type="text/javascript" rel="script"></script>
+</body>
+</html>
